@@ -1,0 +1,5 @@
+Main.js - Taking out the link for help center and others
+index.js = removing those using the help center links
+footer.js - update on the help center link
+SidebarNav.js - for commenting out the help center thing.
+Topbar.js - for removing the appearance of the links
