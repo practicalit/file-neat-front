@@ -31,7 +31,7 @@ const Hero = props => {
           <SectionHeader
             title={
               <span>
-                Send with {' '}
+                Send With {' '}
                 <Typography component="span" variant="inherit" color="primary">File Neat.</Typography>
                 <br />
                 <span>Fast. Secure. Dependable.</span>
