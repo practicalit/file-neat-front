@@ -49,7 +49,7 @@ const Hero = props => {
       <Section className={classes.section}>
         <SectionHeader
           title="Contact us"
-          subtitle="We love to hear from you, please contact us with any questions or suggestion you have."
+          subtitle="We love to hear from you, please contact us with any questions or suggestions you have."
           align="left"
           data-aos="fade-up"
           disableGutter
