@@ -34,7 +34,7 @@ const SigninSimple = () => {
             title="Sign in"
             subtitle={
               <span>
-                Don’t have an account?{' '}
+                Don’t have an account yet?{' '}
                 <LearnMoreLink
                   title="Sign up."
                   href="/signup"
