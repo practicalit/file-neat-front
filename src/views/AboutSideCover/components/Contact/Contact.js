@@ -89,7 +89,7 @@ const Contact = props => {
           <ListItemText
             className={classes.listItemText}
             primary="Email"
-            secondary="hi@fileneat.com"
+            secondary="hello@fileneat.com"
             primaryTypographyProps={{
               color: 'textSecondary',
             }}
