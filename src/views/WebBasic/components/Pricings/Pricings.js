@@ -23,7 +23,7 @@ const Pricings = props => {
   return (
     <div className={clsx(classes.root, className)} {...rest}>
       <SectionHeader
-        title="Simple pricingll"
+        title= "Pricing"
         subtitle="A pay-once license, just for you."
         ctaGroup={[
           <LearnMoreLink title="See what's included" href="#" variant="h6" />,
