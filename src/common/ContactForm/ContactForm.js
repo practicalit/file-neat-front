@@ -147,7 +147,7 @@ const ContactForm = () => {
               color="primary"
               disabled={!formState.isValid}
             >
-              Send
+              Signup NOW
             </Button>
           </Grid>
         </Grid>
