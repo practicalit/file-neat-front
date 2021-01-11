@@ -77,7 +77,7 @@ const Contact = props => {
                 <ListItemText
                   className={classes.listItemText}
                   primary="Email"
-                  secondary="hi@fileneat.com"
+                  secondary="hello@fileneat.com"
                   primaryTypographyProps={{
                     className: classes.title,
                     variant: 'subtitle1',
