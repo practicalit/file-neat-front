@@ -118,7 +118,7 @@ const Form = () => {
               color="primary"
               fullWidth
             >
-              Send
+              Reset
             </Button>
           </Grid>
           <Grid item xs={12}>
