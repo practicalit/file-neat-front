@@ -48,7 +48,7 @@ const Billing = props => {
             Card Number
           </Typography>
           <TextField
-            placeholder="Account number or IBAN"
+            placeholder="Credit Card"
             variant="outlined"
             size="medium"
             name="cardNumber"
