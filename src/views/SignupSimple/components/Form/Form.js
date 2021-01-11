@@ -140,12 +140,13 @@ const Form = () => {
               value={formState.values.lastName || ''}
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <TextField
               placeholder="Company Name *"
-              label="Company Name *"
+              label="Company Name*"
               variant="outlined"
               size="medium"
+              fullWidth
               />
               </Grid>
           <Grid item xs={12}>
