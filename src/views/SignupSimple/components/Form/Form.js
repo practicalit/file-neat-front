@@ -142,6 +142,15 @@ const Form = () => {
           </Grid>
           <Grid item xs={12}>
             <TextField
+              placeholder="Company Name *"
+              label="Company Name*"
+              variant="outlined"
+              size="medium"
+              fullWidth
+              />
+              </Grid>
+          <Grid item xs={12}>
+            <TextField
               placeholder="E-mail"
               label="E-mail *"
               variant="outlined"
