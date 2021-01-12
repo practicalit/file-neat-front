@@ -42,7 +42,7 @@ const Form = props => {
     <div className={clsx(classes.root, className)} {...rest}>
       <SectionHeader
         title="Can't find the answer you need?"
-        subtitle="Keep track of what's happening with your data, change permissions, and run reports against your data anywhere in the world. Keep track of what's happening with your data, change permissions."
+        subtitle="Give us only in brief your question or concerns and we will get back to you.Thankyou"
         subtitleProps={{
           variant: 'body1',
           color: 'textPrimary',
