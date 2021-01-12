@@ -100,7 +100,7 @@ const Contact = props => {
                 <ListItemText
                   className={classes.listItemText}
                   primary="Head Office"
-                  secondary="911 Silver Spring Ave Silver Spring MD"
+                  secondary="911 Silver Spring Ave Silver Spring MD 20910"
                   primaryTypographyProps={{
                     className: classes.title,
                     variant: 'subtitle1',
