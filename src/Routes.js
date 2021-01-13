@@ -24,6 +24,7 @@ import {
   SignupSimple as SignupSimpleView,
   Thankyou as ThankyouView,
   WebBasic as WebBasicView,
+  Acknowledge as AcknowledgeView,
 } from './views';
 
 const Routes = () => {
@@ -113,6 +114,12 @@ const Routes = () => {
         exact
         layout={MinimalLayout}
         path="/not-found-cover"
+      />
+      <RouteWithLayout
+        component={AcknowledgeView}
+        exact
+        layout={MainLayout}
+        path="/ack"
       />
       <Redirect to="/not-found-cover" status="404" />
     </Switch>

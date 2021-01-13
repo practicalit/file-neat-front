@@ -11,3 +11,4 @@ export { default as Thankyou } from './Thankyou';
 export { default as NotFound } from './NotFound';
 export { default as NotFoundCover } from './NotFoundCover';
 export { default as WebBasic } from './WebBasic';
+export { default as Acknowledge } from './Acknowledge';
