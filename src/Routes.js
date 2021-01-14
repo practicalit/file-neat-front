@@ -24,6 +24,7 @@ import {
   SignupSimple as SignupSimpleView,
   Thankyou as ThankyouView,
   WebBasic as WebBasicView,
+  VerifyCustomer as VerifyCustomerView,
 } from './views';
 
 const Routes = () => {
@@ -114,6 +115,15 @@ const Routes = () => {
         layout={MinimalLayout}
         path="/not-found-cover"
       />
+      <RouteWithLayout
+        component={VerifyCustomerView}
+        exact
+        layout={MinimalLayout}
+        path="/verify-customer"
+      />
+
+
+    
       <Redirect to="/not-found-cover" status="404" />
     </Switch>
   );
