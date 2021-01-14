@@ -24,6 +24,7 @@ import {
   SignupSimple as SignupSimpleView,
   Thankyou as ThankyouView,
   WebBasic as WebBasicView,
+  Upload as UploadView,
 } from './views';
 
 const Routes = () => {
@@ -114,6 +115,12 @@ const Routes = () => {
         layout={MinimalLayout}
         path="/not-found-cover"
       />
+       <RouteWithLayout
+        component={UploadView}
+        exact
+        layout={MainLayout}
+        path="/Upload"
+        />
       <Redirect to="/not-found-cover" status="404" />
     </Switch>
   );

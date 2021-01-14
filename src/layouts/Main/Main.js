@@ -98,6 +98,10 @@ const Main = props => {
               title: 'Billing',
               href: '/account/?pid=billing',
             },
+            {
+              title: 'Upload',
+              href: '/upload',
+            },
           ],
         },
         //needs cleanup here
@@ -116,6 +120,7 @@ const Main = props => {
               title: 'Password Reset',
               href: '/password-reset',
             }
+
           ],
         },
         password: {
