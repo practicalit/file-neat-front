@@ -37,7 +37,7 @@ const MemberIdentification = (props) => {
               variant="outlined"
               size="medium"
               name="email"
-              
+              mediumwidth
               type="email"
             />
           </Grid>
@@ -54,8 +54,9 @@ const MemberIdentification = (props) => {
               variant="outlined"
               size="medium"
               name="Phone"
+              mediumwidth
+              type="text"
               
-              type="Number"
             />
           </Grid>      
           <Button
@@ -64,7 +65,7 @@ const MemberIdentification = (props) => {
               color="primary"
               size="large"
             >
-              verify
+              Verify
             </Button>   
 
               
