@@ -14,7 +14,6 @@ import {
   Account as AccountView,
   ContactPage as ContactPageView,
   CompanyTerms as CompanyTermsView,
-  BlogSearch as BlogSearchView,
   BlogArticle as BlogArticleView,
   NotFound as NotFoundView,
   NotFoundCover as NotFoundCoverView,
@@ -25,7 +24,6 @@ import {
   Thankyou as ThankyouView,
   WebBasic as WebBasicView,
 } from './views';
-
 const Routes = () => {
   return (
     <Switch>
@@ -36,7 +34,7 @@ const Routes = () => {
         layout={MainLayout}
         path="/"
       />
-      <RouteWithLayout
+       <RouteWithLayout
         component={PricingView}
         exact
         layout={MainLayout}

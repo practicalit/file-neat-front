@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, List, ListItem, Grid, Typography } from '@material-ui/core';
 import { SectionAlternate, CardBase } from 'components/organisms';
-import { Hero, General, Security, Notifications, Billing } from './components';
+import { Hero, General, Security, Notifications, Billing, SearchFile } from './components';
 import { getQueryParams } from 'utils';
 
 const useStyles = makeStyles(theme => ({
@@ -80,6 +80,11 @@ const subPages = [
     href: '/account/?pid=billing',
     title: 'Billing Information',
   },
+  {
+    id: 'SearchFile',
+    href: '/account/?pid=SearchFile',
+    title: 'SearchFile',
+  },
 ];
 
 const TabPanel = props => {
@@ -141,6 +146,9 @@ const Account = (props = {}) => {
               </TabPanel>
               <TabPanel value={pageId} index={'billing'}>
                 <Billing />
+              </TabPanel>
+              <TabPanel value={pageId} index={'SearchFile'}>
+                <SearchFile/>
               </TabPanel>
             </CardBase>
           </Grid>

@@ -98,6 +98,10 @@ const Main = props => {
               title: 'Billing',
               href: '/account/?pid=billing',
             },
+            {
+              title: 'Search',
+              href: '/account/?pid=Search',
+            },
           ],
         },
         //needs cleanup here
