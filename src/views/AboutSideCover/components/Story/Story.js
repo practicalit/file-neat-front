@@ -22,7 +22,7 @@ const Story = props => {
     <div className={clsx(classes.root, className)} {...rest}>
       <SectionHeader
         title="Our story"
-        subtitle="We are dedicated to give you a peace of mind for you and your customers through simple and SECURE file sharing. In just three steps, customers are able to send their secure file and you will get a link to download the document. Then, the file gets deleted in a couple of hours after it is downloaded."
+        subtitle="We are dedicated to give you a peace of mind for you and your customers through simple and SECURE file sharing. In just three steps, customers are able to send their secure file and you will get a to download the document. Then, the file gets deleted in a couple of hours after it is downloaded."
         align={isMd ? 'center' : 'left'}
         disableGutter
         subtitleProps={{
