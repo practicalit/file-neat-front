@@ -77,7 +77,7 @@ const subPages = [
   {
     id: 'ListFiles',
     href: '/account/?pid=ListFiles',
-    title: 'ListFiles',
+    title: 'List Files',
   },
   {
     id: 'billing',
