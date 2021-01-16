@@ -1,111 +1,79 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import {
-  useMediaQuery,
-  Grid,
-  Typography,
-  TextField,
-  Divider,
-} from '@material-ui/core';
-
-const useStyles = makeStyles(theme => ({
-  root: {},
-  inputTitle: {
-    fontWeight: 700,
-    marginBottom: theme.spacing(1),
+import { withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import { FilterVintageTwoTone } from '@material-ui/icons';
+const styles = theme => ({
+  root: {
+    width: '100%',
+    marginTop: theme.spacing.unit * 3,
+    overflowX: 'auto',
   },
-}));
-
-const ListMembers = props => {
-  const { className, ...rest } = props;
-  const classes = useStyles();
-
-  const theme = useTheme();
-  const isMd = useMediaQuery(theme.breakpoints.up('md'), {
-    defaultMatches: true,
-  });
-
+  table: {
+    minWidth: 700,
+  },
+});
+let id = 0;
+function createData(first_name, last_name, email, status) {
+  id += 1;
+  return { id, first_name, last_name, email, status };
+}
+const rows = [
+  createData('James', 'Peter ', 'peter@fileneat.com','ACTIVE'),
+  createData('John', 'Johnson', 'john@fileneat.com', 'ACTIVE'),
+  createData('Jenn', 'James','jenn@fileneat.com', 'INACTIVE'),
+];
+function SimpleTable(props) {
+  const { classes } = props;
   return (
-    <div className={clsx(classes.root, className)} {...rest}>
-      <Grid container spacing={isMd ? 4 : 2}>
-        <Grid item xs={12}>
-          <Typography variant="h6" color="textPrimary">
-           Status 
-          </Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <Divider />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Typography
-            variant="subtitle1"
-            color="textPrimary"
-            className={classes.inputTitle}
-          >
-            First  Name 
-          </Typography>
-          <TextField
-            placeholder="First Name"
-            variant="outlined"
-            size="medium"
-            name="FirstName"
-            fullWidth
-            type="text"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Typography
-            variant="subtitle1"
-            color="textPrimary"
-            className={classes.inputTitle}
-          >
-           Last Name
-          </Typography>
-          <TextField
-            placeholder=" Last Name"
-            variant="outlined"
-            size="medium"
-            name=" LastName"
-            fullWidth
-            type="text"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Typography
-            variant="subtitle1"
-            color="textPrimary"
-            className={classes.inputTitle}
-          >
-            E-mail
-          </Typography>
-          <TextField
-            placeholder="Your e-mail address"
-            variant="outlined"
-            size="medium"
-            name="email"
-            fullWidth
-            type="email"
-          />
-        </Grid>  
-        
-        </Grid>
-        <Grid item xs={12}>
-          <Divider />       
-              
-      </Grid>
-    </div>
+    <Paper className={classes.root}>
+      <Table className={classes.table}>
+        <TableHead>
+          <TableRow>
+          <TableCell></TableCell>
+          <TableCell align="right">first_name</TableCell>
+            <TableCell align="right">last_name</TableCell>
+            <TableCell align="right">email</TableCell>
+            <TableCell align="right">status</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map(row => (
+            <TableRow key={row.id}>
+              <TableCell component="th" scope="row">
+                {row.name}
+              </TableCell>
+              <TableCell align="right">{row.first_name}</TableCell>
+              <TableCell align="right">{row.last_name}</TableCell>
+              <TableCell align="right">{row.email}</TableCell>
+              <TableCell align="right">{row.status}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </Paper>
   );
+}
+SimpleTable.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+export default withStyles(styles)(SimpleTable);
 
-ListMembers.propTypes = {
-  /**
-   * External classes
-   */
-  className: PropTypes.string,
-};
 
-export default ListMembers;
 
-        
+
+
+
+
+
+
+
+
+
+
+
