@@ -25,6 +25,7 @@ import {
   Thankyou as ThankyouView,
   WebBasic as WebBasicView,
 } from './views';
+import IdentifyCompany from 'views/IdentifyCompany';
 
 const Routes = () => {
   return (
@@ -109,10 +110,16 @@ const Routes = () => {
         path="/not-found"
       />
       <RouteWithLayout
-        component={NotFoundCoverView}
+        component={IdentifyCompany}
         exact
         layout={MinimalLayout}
         path="/not-found-cover"
+      />
+      <RouteWithLayout
+        component={IdentifyCompany}
+        exact
+        layout={MinimalLayout}
+        path="/Identiy-company"
       />
       <Redirect to="/not-found-cover" status="404" />
     </Switch>
@@ -120,3 +127,4 @@ const Routes = () => {
 };
 
 export default Routes;
+
