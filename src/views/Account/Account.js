@@ -6,6 +6,7 @@ import { SectionAlternate, CardBase } from 'components/organisms';
 import { Hero, General, Security, Notifications, Billing } from './components';
 import { getQueryParams } from 'utils';
 
+
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100%',
@@ -80,7 +81,7 @@ const subPages = [
     href: '/account/?pid=billing',
     title: 'Billing Information',
   },
-];
+  ];
 
 const TabPanel = props => {
   const { children, value, index, ...other } = props;
@@ -142,7 +143,7 @@ const Account = (props = {}) => {
               <TabPanel value={pageId} index={'billing'}>
                 <Billing />
               </TabPanel>
-            </CardBase>
+              </CardBase>
           </Grid>
         </Grid>
       </SectionAlternate>

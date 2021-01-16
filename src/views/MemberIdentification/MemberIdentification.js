@@ -3,8 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Section, SectionAlternate } from 'components/organisms';
 import { Button, Grid, TextField, Typography } from '@material-ui/core';
 
-//import Pricings from '../../views/WebBasic/components/Pricings/'; 
-//import { pricings } from './data';
+
 
 const useStyles = makeStyles(theme => ({
   root: {

@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import { Switch, Redirect } from 'react-router-dom';
-import MemberIdentification from 'views/MemberIdentification';
+
 
 import { RouteWithLayout } from './common';
 import { Main as MainLayout, Minimal as MinimalLayout } from './layouts';
@@ -25,6 +25,7 @@ import {
   SignupSimple as SignupSimpleView,
   Thankyou as ThankyouView,
   WebBasic as WebBasicView,
+  MemberIdentification,
 } from './views';
 
 const Routes = () => {
@@ -121,7 +122,7 @@ const Routes = () => {
         layout={MinimalLayout}
         path="/identify-customer"
       />
-      <Redirect to="/not-found-cover" status="404" />
+     <Redirect to="/not-found-cover" status="404" />
     </Switch>
   );
 };

@@ -41,6 +41,10 @@ const Main = props => {
               title: 'Terms',
               href: '/company-terms',
             },
+            {
+              title: 'Member Identfication',
+              href: '/identify-customer',
+            }, 
           ],
         },
         blog: {
@@ -97,6 +101,9 @@ const Main = props => {
             {
               title: 'Billing',
               href: '/account/?pid=billing',
+            },
+            {
+              
             },
           ],
         },
