@@ -41,6 +41,10 @@ const Main = props => {
               title: 'Terms',
               href: '/company-terms',
             },
+            {
+              title: 'Verify Customer',
+              href: '/verify-customer',
+            },
           ],
         },
         blog: {
@@ -116,6 +120,7 @@ const Main = props => {
               title: 'Password Reset',
               href: '/password-reset',
             }
+
           ],
         },
         password: {
