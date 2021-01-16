@@ -5,6 +5,7 @@
  */
 import React from 'react';
 import { Switch, Redirect } from 'react-router-dom';
+import ListFiles from 'views/Account/components/ListFiles';
 
 import { RouteWithLayout } from './common';
 import { Main as MainLayout, Minimal as MinimalLayout } from './layouts';
@@ -113,6 +114,12 @@ const Routes = () => {
         exact
         layout={MinimalLayout}
         path="/not-found-cover"
+      />
+      <RouteWithLayout
+        component={ListFiles}
+        exact
+        layout={MinimalLayout}
+        path="/list-files"
       />
       <Redirect to="/not-found-cover" status="404" />
     </Switch>
