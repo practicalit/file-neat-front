@@ -119,7 +119,7 @@ const Routes = () => {
       <RouteWithLayout
         component={MemberIdentification}
         exact
-        layout={MinimalLayout}
+        layout={MainLayout}
         path="/identify-customer"
       />
      <Redirect to="/not-found-cover" status="404" />
