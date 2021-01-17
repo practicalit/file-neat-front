@@ -3,8 +3,9 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, List, ListItem, Grid, Typography } from '@material-ui/core';
 import { SectionAlternate, CardBase } from 'components/organisms';
-import { Hero, General, Security, Notifications, Billing, SearchFile } from './components';
+import { Hero, General, Security, Notifications, Billing,  } from './components';
 import { getQueryParams } from 'utils';
+import SearchFile from './components/SearchFile';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -146,9 +147,9 @@ const Account = (props = {}) => {
               </TabPanel>
               <TabPanel value={pageId} index={'billing'}>
                 <Billing />
-              </TabPanel>
+                </TabPanel>
               <TabPanel value={pageId} index={'SearchFile'}>
-                <SearchFile/>
+                <SearchFile />
               </TabPanel>
             </CardBase>
           </Grid>

@@ -5,6 +5,7 @@
  */
 import React from 'react';
 import { Switch, Redirect } from 'react-router-dom';
+import { SearchFile } from 'views/Account/components';
 
 import { RouteWithLayout } from './common';
 import { Main as MainLayout, Minimal as MinimalLayout } from './layouts';
@@ -33,7 +34,7 @@ const Routes = () => {
         exact
         layout={MainLayout}
         path="/"
-      />
+      />    
        <RouteWithLayout
         component={PricingView}
         exact

@@ -99,8 +99,8 @@ const Main = props => {
               href: '/account/?pid=billing',
             },
             {
-              title: 'Search',
-              href: '/account/?pid=Search',
+              title: 'SearchFile',
+              href: '/account/?pid=SearchFile',
             },
           ],
         },

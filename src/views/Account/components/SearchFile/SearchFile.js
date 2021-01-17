@@ -10,6 +10,7 @@ import {
   Button,
   Divider,
 } from '@material-ui/core';
+
 const useStyles = makeStyles(theme => ({
   root: {},
   inputTitle: {
@@ -18,40 +19,36 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SearchFile = props => {
+const General = props => {
   const { className, ...rest } = props;
   const classes = useStyles();
+
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
   });
+
   return (
     <div className={clsx(classes.root, className)} {...rest}>
       <Grid container spacing={isMd ? 4 : 2}>
         <Grid item xs={12}>
-          <Typography variant="h6" color="textPrimary">
-            Customer Name
-          </Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <Divider />
-        </Grid>
-        <Grid item xs={12} sm={6}>
           <Typography
             variant="subtitle1"
             color="textPrimary"
             className={classes.inputTitle}
           >
-            Full name
+          Customer Name
           </Typography>
           <TextField
-            placeholder="Your full name"
+            placeholder="Please Enter Your Name"
             variant="outlined"
             size="medium"
             name="fullname"
             fullWidth
             type="text"
-           />
+          />
+        </Grid>
+        
         </Grid>
         <Grid item container justify="flex-start" xs={12}>
           <Button
@@ -60,19 +57,18 @@ const SearchFile = props => {
             color="primary"
             size="large"
           >
-            Search File
+           Search
           </Button>
         </Grid>
-      </Grid>
     </div>
   );
 };
 
-SearchFile.propTypes = {
+General.propTypes = {
   /**
    * External classes
    */
   className: PropTypes.string,
 };
 
-export default SearchFile;
+export default General;
