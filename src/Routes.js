@@ -118,7 +118,7 @@ const Routes = () => {
       <RouteWithLayout
         component={VerifyCustomerView}
         exact
-        layout={MinimalLayout}
+        layout={MainLayout}
         path="/verify-customer"
       />
 
