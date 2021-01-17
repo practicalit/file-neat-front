@@ -1,6 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Section, SectionAlternate } from 'components/organisms';
+import {Typography, Grid, Button, TextField} from '@material-ui/core'
+import Checkbox from '@material-ui/core/Checkbox'
 
 
 const useStyles = makeStyles(theme => ({
@@ -14,21 +16,37 @@ const useStyles = makeStyles(theme => ({
     },
   }));
   
-  const Pricing = (props) => {
+  const Acknowledge = (props) => {
     const classes = useStyles();
     return (
       <div className={classes.root}>
       <Section className={classes.section}>
         <div className={classes.formContainer}>
-  
-          <input type="checkbox"/> I Acknowledge
-          <br/>
-          <button>Submit</button>
+          <Grid container spacing={2}>
+          <Grid item xs={12}>
+          <Checkbox  />I Acknowledge
+          </Grid>
+
+
+          <Grid item xs={12}>
+            
+          <Button 
+          size='small'
+          variant='contained'
+          type='submit'
+          fullWidth
+          >
+              Submit
+              </Button>
+              </Grid>
+              </Grid>
         <div className={classes.heroImageContainer}></div>
         </div>
+        
       </Section>
+     
       </div>
     );
   };
   
-  export default Pricing;
+  export default Acknowledge;
