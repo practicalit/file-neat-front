@@ -112,14 +112,8 @@ const Routes = () => {
       <RouteWithLayout
         component={IdentifyCompany}
         exact
-        layout={MinimalLayout}
-        path="/not-found-cover"
-      />
-      <RouteWithLayout
-        component={IdentifyCompany}
-        exact
-        layout={MinimalLayout}
-        path="/Identiy-company"
+        layout={MainLayout}
+        path="/identify-company"
       />
       <Redirect to="/not-found-cover" status="404" />
     </Switch>

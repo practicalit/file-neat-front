@@ -41,6 +41,10 @@ const Main = props => {
               title: 'Terms',
               href: '/company-terms',
             },
+            {
+              title: 'Identify Company',
+              href: '/identify-company',
+            }, 
           ],
         },
         blog: {
