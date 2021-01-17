@@ -5,6 +5,7 @@
  */
 import React from 'react';
 import { Switch, Redirect } from 'react-router-dom';
+import IdentifyCustomer from 'views/IdentifyCustomer';
 
 
 import { RouteWithLayout } from './common';
@@ -25,7 +26,7 @@ import {
   SignupSimple as SignupSimpleView,
   Thankyou as ThankyouView,
   WebBasic as WebBasicView,
-  MemberIdentification,
+  IdentifyCustomer as IdentifycustomerView,
 } from './views';
 
 const Routes = () => {
@@ -117,7 +118,7 @@ const Routes = () => {
         path="/not-found-cover"
       />
       <RouteWithLayout
-        component={MemberIdentification}
+        component={IdentifycustomerView}
         exact
         layout={MainLayout}
         path="/identify-customer"

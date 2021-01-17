@@ -42,7 +42,7 @@ const Main = props => {
               href: '/company-terms',
             },
             {
-              title: 'Member Identfication',
+              title: 'Identify Customer',
               href: '/identify-customer',
             }, 
           ],

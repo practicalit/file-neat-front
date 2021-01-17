@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const MemberIdentification = (props) => {
+const IdentifyCustomer = (props) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -75,5 +75,5 @@ const MemberIdentification = (props) => {
   );
 };
 
-export default MemberIdentification;
+export default IdentifyCustomer;
 
