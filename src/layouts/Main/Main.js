@@ -93,7 +93,8 @@ const Main = props => {
             {
               title: 'Notifications',
               href: '/account/?pid=notifications',
-            },
+            },  
+            
             {
               title: 'Billing',
               href: '/account/?pid=billing',
@@ -105,6 +106,10 @@ const Main = props => {
             {
               title: 'List Files',
               href: '/account/?pid=ListFiles',
+            },
+            {
+              title: 'ListMembers',
+              href: '/account/?pid=ListMembers',
             },
           ],
         },
