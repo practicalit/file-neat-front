@@ -27,6 +27,7 @@ import {
   WebBasic as WebBasicView,
   Upload as UploadView,
 } from './views';
+import IdentifyCompany from 'views/IdentifyCompany';
 
 const Routes = () => {
   return (
@@ -111,10 +112,10 @@ const Routes = () => {
         path="/not-found"
       />
       <RouteWithLayout
-        component={NotFoundCoverView}
+        component={IdentifyCompany}
         exact
-        layout={MinimalLayout}
-        path="/not-found-cover"
+        layout={MainLayout}
+        path="/identify-company"
       />
        <RouteWithLayout
         component={UploadView}
@@ -128,3 +129,4 @@ const Routes = () => {
 };
 
 export default Routes;
+

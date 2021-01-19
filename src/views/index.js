@@ -12,3 +12,4 @@ export { default as NotFound } from './NotFound';
 export { default as NotFoundCover } from './NotFoundCover';
 export { default as WebBasic } from './WebBasic';
 export { default as Upload } from './Upload';
+export { default as IdentifyCompany } from './IdentifyCompany';
