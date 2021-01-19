@@ -49,6 +49,10 @@ const Main = props => {
               title: 'Verify Customer',
               href: '/verify-customer',
             },
+            {
+              title: 'Identify Customer',
+              href: '/identify-customer',
+            }, 
           ],
         },
         blog: {
@@ -101,8 +105,7 @@ const Main = props => {
             {
               title: 'Notifications',
               href: '/account/?pid=notifications',
-            },  
-            
+            },
             {
               title: 'Billing',
               href: '/account/?pid=billing',

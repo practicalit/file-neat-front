@@ -6,6 +6,8 @@
 import React from 'react';
 import { Switch, Redirect } from 'react-router-dom';
 import ListFiles from 'views/Account/components/ListFiles';
+import IdentifyCustomer from 'views/IdentifyCustomer';
+
 
 import { RouteWithLayout } from './common';
 import { Main as MainLayout, Minimal as MinimalLayout } from './layouts';
@@ -27,6 +29,7 @@ import {
   WebBasic as WebBasicView,
   Upload as UploadView,
   VerifyCustomer as VerifyCustomerView,
+  IdentifyCustomer as IdentifycustomerView,
 } from './views';
 import IdentifyCompany from 'views/IdentifyCompany';
 
@@ -130,10 +133,13 @@ const Routes = () => {
         layout={MainLayout}
         path="/verify-customer"
       />
-
-
-    
-      <Redirect to="/not-found-cover" status="404" />
+      <RouteWithLayout
+        component={IdentifycustomerView}
+        exact
+        layout={MainLayout}
+        path="/identify-customer"
+      />
+     <Redirect to="/not-found-cover" status="404" />
     </Switch>
   );
 };
