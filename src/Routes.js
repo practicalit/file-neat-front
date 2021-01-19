@@ -26,6 +26,7 @@ import {
   Thankyou as ThankyouView,
   WebBasic as WebBasicView,
   Upload as UploadView,
+  VerifyCustomer as VerifyCustomerView,
 } from './views';
 import IdentifyCompany from 'views/IdentifyCompany';
 
@@ -123,6 +124,15 @@ const Routes = () => {
         layout={MainLayout}
         path="/Upload"
         />
+      <RouteWithLayout
+        component={VerifyCustomerView}
+        exact
+        layout={MainLayout}
+        path="/verify-customer"
+      />
+
+
+    
       <Redirect to="/not-found-cover" status="404" />
     </Switch>
   );

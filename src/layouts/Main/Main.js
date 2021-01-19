@@ -44,7 +44,11 @@ const Main = props => {
             {
               title: 'Identify Company',
               href: '/identify-company',
-            }, 
+            },
+            {
+              title: 'Verify Customer',
+              href: '/verify-customer',
+            },
           ],
         },
         blog: {
