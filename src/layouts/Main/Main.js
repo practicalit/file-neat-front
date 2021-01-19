@@ -122,6 +122,10 @@ const Main = props => {
               title: 'ListMembers',
               href: '/account/?pid=ListMembers',
             },
+            {
+              title: 'Search File',
+              href: '/account/?pid=SearchFile',
+            },
           ],
         },
         //needs cleanup here

@@ -17,7 +17,6 @@ import {
   Account as AccountView,
   ContactPage as ContactPageView,
   CompanyTerms as CompanyTermsView,
-  BlogSearch as BlogSearchView,
   BlogArticle as BlogArticleView,
   NotFound as NotFoundView,
   NotFoundCover as NotFoundCoverView,
@@ -30,8 +29,8 @@ import {
   Upload as UploadView,
   VerifyCustomer as VerifyCustomerView,
   IdentifyCustomer as IdentifycustomerView,
+  IdentifyCompany as IdentifyCompanyView
 } from './views';
-import IdentifyCompany from 'views/IdentifyCompany';
 
 const Routes = () => {
   return (
@@ -42,8 +41,8 @@ const Routes = () => {
         exact
         layout={MainLayout}
         path="/"
-      />
-      <RouteWithLayout
+      />    
+       <RouteWithLayout
         component={PricingView}
         exact
         layout={MainLayout}
@@ -116,7 +115,7 @@ const Routes = () => {
         path="/not-found"
       />
       <RouteWithLayout
-        component={IdentifyCompany}
+        component={IdentifyCompanyView}
         exact
         layout={MainLayout}
         path="/identify-company"

@@ -4,3 +4,4 @@ export { default as Security } from './Security';
 export { default as Notifications } from './Notifications';
 export { default as Billing } from './Billing';
 export { default as ListMembers } from './ListMembers';
+export { default as SearchFile } from './SearchFile';
