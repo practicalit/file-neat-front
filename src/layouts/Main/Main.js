@@ -100,7 +100,11 @@ const Main = props => {
             },
             {
               title: 'Upload',
-              href: '/upload',
+              href: '/upload'
+            },
+            {
+              title: 'List Files',
+              href: '/account/?pid=ListFiles',
             },
           ],
         },

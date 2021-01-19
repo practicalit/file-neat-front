@@ -3,9 +3,9 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, List, ListItem, Grid, Typography } from '@material-ui/core';
 import { SectionAlternate, CardBase } from 'components/organisms';
-import { Hero, General, Security, Notifications, Billing } from './components';
+import { Hero, General, Security, Notifications, Billing, } from './components';
 import { getQueryParams } from 'utils';
-
+import ListFiles from './components/ListFiles';
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100%',
@@ -58,7 +58,6 @@ const useStyles = makeStyles(theme => ({
     },
   },
 }));
-
 const subPages = [
   {
     id: 'general',
@@ -76,26 +75,27 @@ const subPages = [
     title: 'Notifications',
   },
   {
+    id: 'ListFiles',
+    href: '/account/?pid=ListFiles',
+    title: 'List Files',
+  },
+  {
     id: 'billing',
     href: '/account/?pid=billing',
     title: 'Billing Information',
   },
 ];
-
 const TabPanel = props => {
   const { children, value, index, ...other } = props;
-
   return (
     <Box component="div" hidden={value !== index} {...other}>
       {value === index && children}
     </Box>
   );
 };
-
 const Account = (props = {}) => {
   const classes = useStyles();
-  let pageId = getQueryParams().pid || 'general';
-
+  let pageId = getQueryParams().pid || 'Search';
   return (
     <div className={classes.root}>
       <Hero />
@@ -142,6 +142,9 @@ const Account = (props = {}) => {
               <TabPanel value={pageId} index={'billing'}>
                 <Billing />
               </TabPanel>
+              <TabPanel value={pageId} index={'ListFiles'}>
+                <ListFiles />
+              </TabPanel>
             </CardBase>
           </Grid>
         </Grid>
@@ -149,5 +152,10 @@ const Account = (props = {}) => {
     </div>
   );
 };
-
 export default Account;
+
+
+
+
+
+

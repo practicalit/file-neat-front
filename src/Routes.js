@@ -5,6 +5,7 @@
  */
 import React from 'react';
 import { Switch, Redirect } from 'react-router-dom';
+import ListFiles from 'views/Account/components/ListFiles';
 
 import { RouteWithLayout } from './common';
 import { Main as MainLayout, Minimal as MinimalLayout } from './layouts';
