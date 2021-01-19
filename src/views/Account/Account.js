@@ -84,7 +84,7 @@ const subPages = [
   {
     id: 'SearchFile',
     href: '/account/?pid=SearchFile',
-    title: 'SearchFile',
+    title: 'Search File',
   },
 ];
 

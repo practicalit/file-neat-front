@@ -40,7 +40,7 @@ const General = props => {
           Customer Name
           </Typography>
           <TextField
-            placeholder="Please Enter Your Name"
+            placeholder="Customer Name"
             variant="outlined"
             size="medium"
             name="fullname"
