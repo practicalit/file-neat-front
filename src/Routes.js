@@ -29,7 +29,8 @@ import {
   Upload as UploadView,
   VerifyCustomer as VerifyCustomerView,
   IdentifyCustomer as IdentifycustomerView,
-  IdentifyCompany as IdentifyCompanyView
+  IdentifyCompany as IdentifyCompanyView,
+  Acknowledge as AcknowledgeView,
 } from './views';
 
 const Routes = () => {
@@ -138,7 +139,13 @@ const Routes = () => {
         layout={MainLayout}
         path="/identify-customer"
       />
-     <Redirect to="/not-found-cover" status="404" />
+      <RouteWithLayout
+        component={AcknowledgeView}
+        exact
+        layout={MainLayout}
+        path="/ack"
+      />
+      <Redirect to="/not-found-cover" status="404" />
     </Switch>
   );
 };

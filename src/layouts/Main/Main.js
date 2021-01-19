@@ -126,6 +126,10 @@ const Main = props => {
               title: 'Search File',
               href: '/account/?pid=SearchFile',
             },
+            {
+              title: 'Acknowledgement',
+              href: '/ack',
+            },
           ],
         },
         //needs cleanup here
