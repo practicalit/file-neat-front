@@ -115,12 +115,6 @@ const Routes = () => {
         layout={MinimalLayout}
         path="/not-found-cover"
       />
-      <RouteWithLayout
-        component={ListFiles}
-        exact
-        layout={MinimalLayout}
-        path="/list-files"
-      />
       <Redirect to="/not-found-cover" status="404" />
     </Switch>
   );
