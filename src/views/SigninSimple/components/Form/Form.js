@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Grid, Button, TextField } from '@material-ui/core';
 import validate from 'validate.js';
 import { LearnMoreLink } from 'components/atoms';
+import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -38,6 +39,9 @@ const Form = () => {
     errors: {},
   });
 
+  const [loginMessage, setLoginMessage] = React.useState();
+  const [messageColor, setMessageColor] = React.useState("textPrimary");
+
   React.useEffect(() => {
     const errors = validate(formState.values, schema);
 
@@ -71,11 +75,23 @@ const Form = () => {
     event.preventDefault();
 
     if (formState.isValid) {
-      if (router && typeof router.push === 'function') {
-        router.push('/');
-      } else {
-        window.location.replace('/');
-      }
+      axios.post(`${process.env.REACT_APP_BACKEND_SERVER}${process.env.REACT_APP_SIGNIN}`, {
+        email: formState.values.email,
+        password: formState.values.password
+      })
+      .then( response => {
+        if (response && response.data && response.data.success) {
+          setLoginMessage("Successfully Logged in");
+          setMessageColor("primary");
+          //then the user has to be redirected to the home page.
+        } else {
+          console.log(response.data.messages);
+          setLoginMessage(response.data.messages);
+          setMessageColor("error");
+        }
+      }, error => {
+        console.error(error);
+      })
     }
 
     setFormState(formState => ({
@@ -132,6 +148,15 @@ const Form = () => {
                 Fields that are marked with * sign are required.
               </Typography>
             </i>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography
+              variant="subtitle1"
+              color={messageColor}
+              align="center"
+            >
+              {loginMessage}
+            </Typography>
           </Grid>
           <Grid item xs={12}>
             <Button
