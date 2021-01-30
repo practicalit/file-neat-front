@@ -112,7 +112,7 @@ const ContactForm = () => {
               size="medium"
               name="email"
               fullWidth
-              helperText={hasError('email') ? formState.errors.email[0] : null}
+              helperText={hasError('email') ? formState.errors.email[1] : null}
               error={hasError('email')}
               onChange={handleChange}
               type="email"

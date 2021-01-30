@@ -160,7 +160,7 @@ const Account = (props = {}) => {
               <TabPanel value={pageId} index={'ListFiles'}>
                 <ListFiles />
               </TabPanel>
-              <TabPanel value={pageId} index={'ListMembers'}>
+              <TabPanel value={pageId} index={'Lists'}>
                 <ListMembers/>
               </TabPanel>
               </CardBase>
