@@ -31,6 +31,7 @@ import {
   IdentifyCustomer as IdentifycustomerView,
   IdentifyCompany as IdentifyCompanyView,
   Acknowledge as AcknowledgeView,
+  AddFiles as AddFilesView
 } from './views';
 
 const Routes = () => {
@@ -144,6 +145,12 @@ const Routes = () => {
         exact
         layout={MainLayout}
         path="/ack"
+      />
+      <RouteWithLayout
+        component={AddFilesView}
+        exact
+        layout={MainLayout}
+        path="/add-file"
       />
       <Redirect to="/not-found-cover" status="404" />
     </Switch>

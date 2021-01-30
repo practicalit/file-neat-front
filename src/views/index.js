@@ -16,3 +16,4 @@ export { default as IdentifyCompany } from './IdentifyCompany';
 export { default as VerifyCustomer } from './VerifyCustomer';
 export { default as IdentifyCustomer } from './IdentifyCustomer';
 export { default as Acknowledge } from './Acknowledge';
+export { default as AddFiles} from './AddFiles';
