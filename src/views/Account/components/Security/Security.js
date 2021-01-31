@@ -12,6 +12,7 @@ import {
   Button,
   Divider,
 } from '@material-ui/core';
+import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -31,16 +32,68 @@ const useStyles = makeStyles(theme => ({
 
 const Security = props => {
   const { className, ...rest } = props;
+  
   const classes = useStyles();
-
+  
+  const [formState, setFormState] = React.useState({
+    isValid: false,
+    values: {},
+    touched: {},
+    errors: {},
+  });
+  
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
   });
+  
+  const handleSubmit = event => {
+    event.preventDefault()
+    
+     axios.post(`${process.env.REACT_APP_BACKEND_SERVER}${process.env.REACT_APP_SECURITY}`, {
+          email: formState.values.email,
+          currentPassword: formState.values.currentPassword,
+          newPassword: formState.values.newPassword,
+          repatPassword: formState.values.repeatPassword,
+          
+    })
+    .then( response => {
+      if (response && response.data && response.data.success) {
+        console.log("Successfully changed")
+      
+        //then the user has to be redirected to the home page.
+      } else {
+        console.log(response.data.messages);
+      }
+    }, error => {
+      console.error(error);
+    })
+  }
+  const handleChange = event => {
+    event.persist();
 
-  return (
-    <div className={clsx(classes.root, className)} {...rest}>
-      <Grid container spacing={isMd ? 4 : 2}>
+    setFormState(formState => ({
+      ...formState,
+      values: {
+        ...formState.values,
+        [event.target.name]:
+          event.target.type === 'checkbox'
+            ? event.target.checked
+            : event.target.value,
+      },
+      touched: {
+        ...formState.touched,
+        [event.target.name]: true,
+      },
+    }));
+  };
+  const hasError = field =>
+  formState.touched[field] && formState.errors[field] ? true : false;
+  
+return (
+      <div className={clsx(classes.root, className)} {...rest}>
+     <form name="password-reset-form" method="post" onSubmit={handleSubmit}></form>  
+     <Grid container spacing={isMd ? 4 : 2}>
         <Grid item xs={12}>
           <div className={classes.titleCta}>
             <Typography variant="h6" color="textPrimary">
@@ -60,17 +113,43 @@ const Security = props => {
             color="textPrimary"
             className={classes.inputTitle}
           >
+           <Grid item xs={12} data-aos="fade-up">
+            <Typography
+              variant="subtitle1"
+              color="textPrimary"
+              className={classes.inputTitle}
+            >
+              E-mail
+            </Typography>
+            <TextField
+              placeholder="Your e-mail address"
+              variant="outlined"
+              size="medium"
+              name="email"
+              fullWidth
+              helperText={hasError('email') ? formState.errors.email[0] : null}
+              error={hasError('email')}
+              onChange={handleChange}
+              type="email"
+              value={formState.values.email || ''}
+            />
+        </Grid> 
             Current password
           </Typography>
           <TextField
-            placeholder="Old password"
+            placeholder="currentpassword"
             variant="outlined"
             size="medium"
-            name="fullname"
+            name="currentpassword"
             fullWidth
-            type="password"
+              helperText={hasError('currentpassword') ? formState.errors.currentpassword[0] : null}
+              error={hasError('currentpassword')}
+              onChange={handleChange}
+              type="password"
+              value={formState.values.currentpassword || ''}        
           />
         </Grid>
+        
         <Grid item xs={12}>
           <Typography
             variant="subtitle1"
@@ -83,11 +162,16 @@ const Security = props => {
             placeholder="New password"
             variant="outlined"
             size="medium"
-            name="fullname"
+            name="newpassword"
+  
             fullWidth
-            type="password"
+              helperText={hasError('newpassword') ? formState.errors.newpassword[0] : null}
+              error={hasError('newpassword')}
+              onChange={handleChange}
+              type="password"
+              value={formState.values.newpassword || ''}       
           />
-        </Grid>
+         </Grid>
         <Grid item xs={12}>
           <Typography
             variant="subtitle1"
@@ -100,9 +184,13 @@ const Security = props => {
             placeholder="Repeat password"
             variant="outlined"
             size="medium"
-            name="fullname"
+            name="repeatpassword"
             fullWidth
-            type="password"
+              helperText={hasError('repeatpassword') ? formState.errors.repeatpassword[0] : null}
+              error={hasError('repeatpassword')}
+              onChange={handleChange}
+              type="password"
+              value={formState.values.repeatpassword || ''} 
           />
         </Grid>
         <Grid item xs={12}>
@@ -147,13 +235,14 @@ const Security = props => {
             type="submit"
             color="primary"
             size="large"
-          >
+            onClick={(e)=>handleSubmit(e)}       
+           >
             save
           </Button>
         </Grid>
-      </Grid>
-    </div>
-  );
+        </Grid> 
+        </div>
+ );
 };
 
 Security.propTypes = {
