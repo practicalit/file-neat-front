@@ -32,9 +32,7 @@ const styles = theme => ({
 // ];
 function SimpleTable(props) {
   const { classes } = props;
-  const [members, setMembers] = useState( 
-    {id:2,company_id: 2,first_name: "keb", last_name: 'tade', email: "g@gmail.com", city: 'DC'},
-    {id:2,company_id: 2,first_name: "keb", last_name: 'tade', email: "g@gmail.com", city: 'DC'} );
+  const [members, setMembers] = useState([]);
 console.log(members);
   useEffect(()=>{
     
@@ -52,26 +50,20 @@ console.log(members);
             //  `http://file.solutionladder.com/ajax.php?action=search-member&comp_id=2`
       )
       .then((response) =>{
-     
-        console.log(response.data)
-        setMembers(response.data)
+       const members = response.data.data
+        console.log(members)
+        setMembers([members])
       })
       .catch((err) => console.error(err.message))
-  }
-  // useEffect(()=>{
-    
-  //   getMembers();
-    
-  //    return ()=> {
-
-  //    };
-  // },[]);
+    }
+ 
   
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
+            
           <TableCell align="right">company_id</TableCell>
           <TableCell align="right">first_name</TableCell>
             <TableCell align="right">last_name</TableCell>
@@ -80,13 +72,13 @@ console.log(members);
           </TableRow>
         </TableHead>
         <TableBody >
-          {Object.keys(members).map((member) => 
+          {members.map((member) => 
            
             (
              <TableRow  key={member.id}>
-              <TableCell component="th" scope="row">
-                {member.name}
-              </TableCell>
+              {/* <TableCell component="th" scope="row">
+                
+              </TableCell> */}
               <TableCell align="right">{member.company_id}</TableCell>
               <TableCell align="right">{member.first_name}</TableCell>
               <TableCell align="right">{member.last_name}</TableCell>
@@ -97,8 +89,12 @@ console.log(members);
            </TableBody>
       </Table>
     </Paper>
-  );
-}
+  
+    
+            
+
+  
+  )};
 SimpleTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
