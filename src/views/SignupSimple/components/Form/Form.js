@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Grid, Button, TextField } from '@material-ui/core';
 import validate from 'validate.js';
 import { LearnMoreLink } from 'components/atoms';
+import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -13,28 +14,41 @@ const useStyles = makeStyles(theme => ({
 
 const schema = {
   email: {
-    presence: { allowEmpty: false, message: 'is required' },
+    presence: { allowEmpty: true, message: 'is required' },
     email: true,
     length: {
       maximum: 300,
     },
   },
-  firstName: {
-    presence: { allowEmpty: false, message: 'is required' },
+  CompanyName: {
+    presence: { allowEmpty: true, message: 'is required' },
     length: {
       maximum: 120,
     },
   },
-  lastName: {
-    presence: { allowEmpty: false, message: 'is required' },
-    length: {
-      maximum: 120,
-    },
-  },
+  
   password: {
+    presence: { allowEmpty: true, message: 'is required' },
+    length: {
+      maximum: 8,
+    },
+  },
+  Address: {
     presence: { allowEmpty: false, message: 'is required' },
     length: {
-      minimum: 8,
+      maximum: 120,
+    },
+  },
+  phoneNumber: {
+    presence: { allowEmpty: false, message: 'is required' },
+    length: {
+      minimum: 10,
+    },
+  },
+  Website: {
+    presence: { allowEmpty: false, message: 'is required' },
+    length: {
+      maximum: 120,
     },
   },
 };
@@ -49,6 +63,9 @@ const Form = () => {
     touched: {},
     errors: {},
   });
+  const [signupMessage, setSignupMessage] = React.useState();
+  const [messageColor, setMessageColor] = React.useState("textPrimary");
+
 
   React.useEffect(() => {
     const errors = validate(formState.values, schema);
@@ -83,13 +100,29 @@ const Form = () => {
     event.preventDefault();
 
     if (formState.isValid) {
-      if (router && typeof router.push === 'function') {
-        router.push('/');
-      } else {
-        window.location.replace('/');
-      }
-    }
+      axios.post(`${process.env.REACT_APP_BACKEND_SERVER}${process.env.REACT_APP_SIGNUP}`, {
+        email: formState.values.email,
+        password: formState.values.password,
+        companyName: formState.values.companyName,
+        Address: formState.values.Address,
+        phoneNumber:formState.values.Address,
+        Website: formState.values.Website
 
+      })
+    .then( response => {
+      if (response && response.data && response.data.success) {
+        setSignupMessage("Successfully signup");
+        setMessageColor("primary");
+        //then the user has to be redirected to the home page.
+      } else {
+        console.log(response.data.messages);
+        setSignupMessage(response.data.messages);
+        setMessageColor("error");
+      }
+    }, error => {
+      console.error(error);
+    })
+  }
     setFormState(formState => ({
       ...formState,
       touched: {
@@ -104,49 +137,21 @@ const Form = () => {
 
   return (
     <div className={classes.root}>
-      <form name="password-reset-form" method="post" onSubmit={handleSubmit}>
+      <form name="signup-form" method="post" onSubmit={handleSubmit}>
         <Grid container spacing={2}>
-          <Grid item xs={6}>
-            <TextField
-              placeholder="First name"
-              label="First name *"
-              variant="outlined"
-              size="medium"
-              name="firstName"
-              fullWidth
-              helperText={
-                hasError('firstName') ? formState.errors.firstName[0] : null
-              }
-              error={hasError('firstName')}
-              onChange={handleChange}
-              type="firstName"
-              value={formState.values.firstName || ''}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <TextField
-              placeholder="Last name"
-              label="Last name *"
-              variant="outlined"
-              size="medium"
-              name="lastName"
-              fullWidth
-              helperText={
-                hasError('lastName') ? formState.errors.lastName[0] : null
-              }
-              error={hasError('lastName')}
-              onChange={handleChange}
-              type="lastName"
-              value={formState.values.lastName || ''}
-            />
-          </Grid>
           <Grid item xs={12}>
             <TextField
               placeholder="Company Name *"
               label="Company Name*"
               variant="outlined"
               size="medium"
+              name="CompanyName"
               fullWidth
+              helperText={hasError('CompanyName') ? formState.errors.CompanyName[0] : null}
+              error={hasError('CompanyName')}
+              onChange={handleChange}
+              type="text"
+              value={formState.values.CompanyName || ''} 
               />
               </Grid>
           <Grid item xs={12}>
@@ -173,12 +178,63 @@ const Form = () => {
               name="password"
               fullWidth
               helperText={
-                hasError('password') ? formState.errors.password[0] : null
-              }
+                hasError('password') ? formState.errors.password[0] : null}
+              
               error={hasError('password')}
               onChange={handleChange}
               type="password"
               value={formState.values.password || ''}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              placeholder="Address"
+              label="Address *"
+              variant="outlined"
+              size="medium"
+              name="Address"
+              fullWidth
+              helperText={
+                hasError('Address') ? formState.errors.Address[0] : null
+              }
+              error={hasError('Address')}
+              onChange={handleChange}
+              type="Address"
+              value={formState.values.Address || ''}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              placeholder="Phone Number"
+              label="phone Number *"
+              variant="outlined"
+              size="medium"
+              name="phoneNumber"
+              fullWidth
+              helperText={
+                hasError('phoneNumber') ? formState.errors.phoneNumber[0] : null
+              }
+              error={hasError('phoneNumber')}
+              onChange={handleChange}
+              type="Number"
+              value={formState.values.phoneNumber || ''}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              placeholder="Website"
+              label="Website *"
+              variant="outlined"
+              size="medium"
+              name="Website"
+              fullWidth
+              helperText={
+                hasError('Website') ? formState.errors.Website[0] : null
+              }
+              error={hasError('Website')}
+              onChange={handleChange}
+              type="Website"
+              value={formState.values.Website || ''}
             />
           </Grid>
           <Grid item xs={12}>
@@ -187,6 +243,15 @@ const Form = () => {
                 Fields that are marked with * sign are required.
               </Typography>
             </i>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography
+              variant="subtitle1"
+              color={messageColor}
+              align="center"
+            >
+              {signupMessage}
+            </Typography>
           </Grid>
           <Grid item xs={12}>
             <Button
@@ -206,7 +271,9 @@ const Form = () => {
               align="center"
             >
               Already have an account?{' '}
-              <LearnMoreLink title="Sign in" href="/signin" />
+              <LearnMoreLink 
+              title="Signup"
+               href="/sign-up" />
             </Typography>
           </Grid>
         </Grid>
