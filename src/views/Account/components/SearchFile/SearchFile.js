@@ -1,15 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import axios from 'axios';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import {
   useMediaQuery,
   Grid,
-  Typography,
+  Typography, 
   TextField,
   Button,
   Divider,
 } from '@material-ui/core';
+import { Handler } from 'leaflet';
+import { getFileInfo } from 'prettier';
 const useStyles = makeStyles(theme => ({
   root: {},
   inputTitle: {
@@ -20,20 +28,22 @@ const useStyles = makeStyles(theme => ({
 
 const General = props => {
   const [search, setSearch] =React.useState("");
+  const [customers, setCustomers] =React.useState([])
   const handlesubmit =async (e)=>{
    e.preventDefault();
-   try {
-     const searchres =await fetch(
-   `${process.env.REACT_APP_BACKEND_SERVER}${process.env.REACT_APP_SEARCH_FILE}/?comp_id=${search}`
-  // 'http://file.solutionladder.com/ajax.php?action=serch-file&comp_id=CUSTOMER_ID_HERE'
-     );
+  
+ 
+    axios.get(`${process.env.REACT_APP_BACKEND_SERVER}${process.env.REACT_APP_SEARCH_FILE}&comp_id=${search}`)
+    .then((response)=>{
+      const search =response.data.data
+      console.log(search)
+      setSearch(search)
+      setCustomers(search)
+    })
+    .catch((err)=> console.log(err.message))
    
-     const res =await searchres.json();
-     props.callBackMe(res);
-   } catch (error){
-     console.log(error.message)
-   }
-   };
+  }
+ 
   
   const { className, ...rest } = props;
   const classes = useStyles();
@@ -74,9 +84,7 @@ const General = props => {
             
           />
         </Grid>
-        
-        
-        <Grid item container justify="flex-start" xs={12}>
+         <Grid item container justify="flex-start" xs={12}>
           <Button
             variant="contained"
             type="submit"
@@ -85,10 +93,30 @@ const General = props => {
           >
            Search
           </Button>
-          
-        </Grid>
+          </Grid>
         </form>
         </Grid>
+
+        <Table className={classes.table}>
+         <TableHead>
+          <TableRow>
+          <TableCell  align="right">customer_id</TableCell>
+          <TableCell align="right">path</TableCell>
+            <TableCell align="right">type</TableCell>
+           
+          </TableRow>
+        </TableHead>
+        <TableBody>
+           {customers.map(customer => (
+            <TableRow key={customer.id}>
+              <TableCell align="right">{customer.customer_id}</TableCell>
+              <TableCell align="right">{customer.path}</TableCell>
+              <TableCell align="right">{customer.type}</TableCell>
+             
+            </TableRow>
+           ))} 
+        </TableBody>
+      </Table> 
     </div>
   );
 };
