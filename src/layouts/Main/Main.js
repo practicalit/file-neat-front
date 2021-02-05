@@ -130,6 +130,10 @@ const Main = props => {
               title: 'Acknowledgement',
               href: '/ack',
             },
+            {
+              title: 'Add File',
+              href: '/account/?pid=AddFiles',
+            },
           ],
         },
         //needs cleanup here

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, List, ListItem, Grid, Typography } from '@material-ui/core';
 import { SectionAlternate, CardBase } from 'components/organisms';
-import { Hero, General, Security, Notifications, Billing, ListMembers, SearchFile } from './components';
+import { Hero, General, Security, Notifications, Billing, ListMembers, SearchFile, AddFiles} from './components';
 import { getQueryParams } from 'utils';
 import ListFiles from './components/ListFiles';
 
@@ -95,6 +95,12 @@ const subPages = [
     href: '/account/?pid=SearchFile',
     title: 'Search File',
   },
+  {
+    id: 'AddFiles',
+    href: '/account/?pid=AddFiles',
+    title: 'Add File',
+  },
+  
 ];
 
 const TabPanel = props => {
@@ -116,6 +122,7 @@ const Account = (props = {}) => {
           <Grid item xs={12} md={3}>
             <CardBase withShadow align="left" className={classes.menu}>
               <List disablePadding className={classes.list}>
+                
                 {subPages.map((item, index) => (
                   <ListItem
                     key={index}
@@ -163,6 +170,11 @@ const Account = (props = {}) => {
               <TabPanel value={pageId} index={'ListMembers'}>
                 <ListMembers/>
               </TabPanel>
+              <TabPanel value={pageId} index={'AddFiles'}>
+                <AddFiles/>
+              </TabPanel>
+    
+            
               </CardBase>
           </Grid>
         </Grid>

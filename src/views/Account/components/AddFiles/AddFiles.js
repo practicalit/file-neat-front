@@ -33,27 +33,34 @@ const AddFiles = () => {
     touched: {},
     errors: {},
   });
- const REACT_APP_BACKEND_SERVER="http://file.solutionladder.com/ajax.php?action="
-const REACT_APP_Addfile="add-file"
+ //const REACT_APP_BACKEND_SERVER="http://file.solutionladder.com/ajax.php?action="
+//const REACT_APP_Addfile="add-file"
   const handleSubmit = event => {
     event.preventDefault()
-    axios.post(`${REACT_APP_BACKEND_SERVER}${REACT_APP_Addfile}`, {
+    axios.post(`${process.env.REACT_APP_BACKEND_SERVER}${process.env.REACT_APP_ADDFILE}`, {
       
-        customer_id: formState.values.coustomerID,
+        customer_id: formState.values.customerID,
         path: formState.values.path,
         type: formState.values.type
       
     })
     .then( response => {
       if (response && response.data && response.data.success) {
-        console.log("Added Successfully")
+        setFormState(formState => ({
+          ...formState, errors: null})
+      )
         //then the user has to be redirected to the home page.
       } else {
         console.log(response.data.messages);
+        setFormState(formState => ({
+          ...formState, errors: "Failed to upload"})
+      )
         
       }
     }, error => {
-      console.error(error);
+      setFormState(formState => ({
+          ...formState, errors: "Failed to upload File"})
+      )
     })
   }
 
@@ -156,7 +163,24 @@ const REACT_APP_Addfile="add-file"
                     fullWidth
                   >
                     Upload
+
             </Button>
+            {<Typography
+                    variant="subtitle1"
+                   
+                    align="center"
+                  >
+
+                    {formState.errors === "Failed to upload" ? formState.errors : ""}
+                  </Typography>}
+                  {<Typography
+                    variant="subtitle1"
+                   
+                    align="center"
+                  >
+
+                    {formState.errors=== null? "File uploaded successfully" : ""}
+                  </Typography>}
                 </Grid>
                 
               </Grid>

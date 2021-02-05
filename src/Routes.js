@@ -146,12 +146,7 @@ const Routes = () => {
         layout={MainLayout}
         path="/ack"
       />
-      <RouteWithLayout
-        component={AddFilesView}
-        exact
-        layout={MainLayout}
-        path="/add-file"
-      />
+      
       <Redirect to="/not-found-cover" status="404" />
     </Switch>
   );
