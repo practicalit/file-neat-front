@@ -14,6 +14,7 @@ import {
 } from '@material-ui/core';
 import axios from 'axios';
 
+
 const useStyles = makeStyles(theme => ({
   root: {},
   inputTitle: {
@@ -50,7 +51,8 @@ const Security = props => {
   const handleSubmit = event => {
     event.preventDefault()
     
-     axios.post(`${process.env.REACT_APP_BACKEND_SERVER}${process.env.REACT_APP_SECURITY}`, {
+    
+      axios.post(`${process.env.REACT_APP_BACKEND_SERVER}${process.env.REACT_APP_SECURITY}`, {
           email: formState.values.email,
           currentPassword: formState.values.currentPassword,
           newPassword: formState.values.newPassword,
@@ -59,15 +61,23 @@ const Security = props => {
     })
     .then( response => {
       if (response && response.data && response.data.success) {
-        console.log("Successfully changed")
+        setFormState(formState => ({
+          ...formState, errors: null})
+        ) 
       
         //then the user has to be redirected to the home page.
       } else {
         console.log(response.data.messages);
+        setFormState(formState => ({
+          ...formState, errors: "Failed to  changed" })
+        )
       }
     }, error => {
-      console.error(error);
+      setFormState(formState => ({
+        ...formState, errors: "successfully changed"})
+      )
     })
+  
   }
   const handleChange = event => {
     event.persist();
@@ -92,7 +102,7 @@ const Security = props => {
   
 return (
       <div className={clsx(classes.root, className)} {...rest}>
-     <form name="password-reset-form" method="post" onSubmit={handleSubmit}></form>  
+     <form name="change-password-form" method="post" onSubmit={handleSubmit}></form>  
      <Grid container spacing={isMd ? 4 : 2}>
         <Grid item xs={12}>
           <div className={classes.titleCta}>
@@ -123,6 +133,7 @@ return (
             </Typography>
             <TextField
               placeholder="Your e-mail address"
+              label="E-mail *"
               variant="outlined"
               size="medium"
               name="email"
@@ -137,16 +148,17 @@ return (
             Current password
           </Typography>
           <TextField
-            placeholder="currentpassword"
+            placeholder="Current Password"
+            label="Current password *"
             variant="outlined"
             size="medium"
-            name="currentpassword"
+            name="currentPassword"
             fullWidth
-              helperText={hasError('currentpassword') ? formState.errors.currentpassword[0] : null}
+              helperText={hasError('currentPassword') ? formState.errors.currentPassword[0] : null}
               error={hasError('currentpassword')}
               onChange={handleChange}
               type="password"
-              value={formState.values.currentpassword || ''}        
+              value={formState.values.currentPassword || ''}        
           />
         </Grid>
         
@@ -159,17 +171,18 @@ return (
             New password
           </Typography>
           <TextField
-            placeholder="New password"
+            placeholder="New Password"
+            label="New password *"
             variant="outlined"
             size="medium"
-            name="newpassword"
+            name="newPassword"
   
             fullWidth
-              helperText={hasError('newpassword') ? formState.errors.newpassword[0] : null}
-              error={hasError('newpassword')}
+              helperText={hasError('newPassword') ? formState.errors.newPassword[0] : null}
+              error={hasError('newPassword')}
               onChange={handleChange}
               type="password"
-              value={formState.values.newpassword || ''}       
+              value={formState.values.newPassword || ''}       
           />
          </Grid>
         <Grid item xs={12}>
@@ -182,17 +195,26 @@ return (
           </Typography>
           <TextField
             placeholder="Repeat password"
+            label="Repeat password *"
             variant="outlined"
             size="medium"
-            name="repeatpassword"
+            name="repeatPassword"
             fullWidth
-              helperText={hasError('repeatpassword') ? formState.errors.repeatpassword[0] : null}
-              error={hasError('repeatpassword')}
+              helperText={hasError('repeatPassword') ? formState.errors.repeatPassword[0] : null}
+              error={hasError('repeatPassword')}
               onChange={handleChange}
               type="password"
-              value={formState.values.repeatpassword || ''} 
+              value={formState.values.repeatPassword || ''} 
           />
-        </Grid>
+        </Grid>  
+        <Grid item xs={12}>
+            <i>
+              <Typography variant="subtitle2">
+                Fields that are marked with * change  are required.
+              </Typography>
+            </i>
+          </Grid>
+
         <Grid item xs={12}>
           <Divider />
         </Grid>
@@ -229,6 +251,17 @@ return (
             labelPlacement="end"
           />
         </Grid>
+        <Grid item xs={12}>
+                  <Typography
+                    variant="subtitle1"
+
+                    align="center"
+                  >
+
+                    {"successfully changed"}
+                  </Typography>
+                </Grid>
+        
         <Grid item container justify="flex-start" xs={12}>
           <Button
             variant="contained"
@@ -239,7 +272,21 @@ return (
            >
             save
           </Button>
-        </Grid>
+          {<Typography
+                    variant="subtitle1"
+                    align="center"
+                  >
+                    {formState.errors === "Failed to change" ? formState.errors : ""}
+                  </Typography>}
+                  {<Typography
+                    variant="subtitle1"
+                    align="center"
+                  >
+                    {formState.errors=== null? "successfully changed" : ""}
+                  
+                  </Typography>}
+                   
+         </Grid>
         </Grid> 
         </div>
  );
