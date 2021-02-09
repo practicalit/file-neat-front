@@ -91,26 +91,20 @@ const Notifications = props => {
           <div>
             <div>
               <FormControlLabel
-                control={<Checkbox defaultChecked={true} color="primary" />}
+                control={<Checkbox defaultChecked={true} color="primary" onChange={(e)=>handleCheckBox(e,"email")}/>}
                 label="E-mail alerts"
               />
             </div>
             <div>
               <FormControlLabel
-                control={<Checkbox defaultChecked={true} color="primary" />}
+                control={<Checkbox defaultChecked={true} color="primary" onChange={(e)=>handleCheckBox(e,"push")}/>}
                 label="Push notifications"
               />
             </div>
             <div>
               <FormControlLabel
-                control={<Checkbox defaultChecked={true} color="primary" />}
+                control={<Checkbox defaultChecked={true} color="primary" onChange={(e)=>handleCheckBox(e,"text")} />}
                 label="Text messages"
-              />
-            </div>
-            <div>
-              <FormControlLabel
-                control={<Checkbox defaultChecked={false} color="primary" />}
-                label="Phone calles"
               />
             </div>
           </div>
@@ -142,7 +136,8 @@ const Notifications = props => {
             variant="contained"
             type="submit"
             color="primary"
-            size="large"
+            size="large" 
+            onClick={(e)=>handleSave(e)}
           >
             save
           </Button>
