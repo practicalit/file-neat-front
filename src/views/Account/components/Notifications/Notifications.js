@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -25,10 +25,45 @@ const Notifications = props => {
   const { className, ...rest } = props;
   const classes = useStyles();
 
+  const [email,setEmail]=useState(1);
+  const [push,setPush]=useState(1);
+  const [text,setText]=useState(1);
+
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
   });
+
+  const handleCheckBox=(e,checkbox)=>{
+    switch(checkbox){
+      case 'email':
+        setEmail(e.target.checked?1:0)
+        break;
+  
+        case 'text':
+          setText(e.target.checked?1:0)
+          break;
+  
+          case 'push':
+            setPush(e.target.checked?1:0)
+            break;
+            default:
+              break;
+    }
+  }
+  const handleSave=(e)=>{
+    e.preventDefault();
+    let notifications={
+      email:email,
+      text:text,
+      push:push,
+      member_id:3
+    };
+    fetch(process.env.API_URL,{    
+      method:"POST",
+      body:JSON.stringify(notifications)
+    }).then(resp=>console.log(resp))
+}
 
   return (
     <div className={clsx(classes.root, className)} {...rest}>
