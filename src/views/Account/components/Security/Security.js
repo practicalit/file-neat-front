@@ -33,26 +33,25 @@ const useStyles = makeStyles(theme => ({
 
 const Security = props => {
   const { className, ...rest } = props;
-  
+
   const classes = useStyles();
-  
+
   const [formState, setFormState] = React.useState({
     isValid: false,
     values: {},
     touched: {},
     errors: {},
   });
-  
+
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
   });
-  
+
   const handleSubmit = event => {
     event.preventDefault()
-    
-    
-      axios.post(`${process.env.REACT_APP_BACKEND_SERVER}${process.env.REACT_APP_SECURITY}`, {
+
+      axios.post(`${process.env.REACT_APP_BACKEND_SERVER}${process.env.REACT_APP_CHANGEPASSWORD}`, {
           email: formState.values.email,
           currentPassword: formState.values.currentPassword,
           newPassword: formState.values.newPassword,
@@ -69,21 +68,21 @@ const Security = props => {
       } else {
         console.log(response.data.messages);
         setFormState(formState => ({
-          ...formState, errors: "Failed to  changed" })
+          ...formState, errors: "Successfully changed"})
         )
       }
     }, error => {
       setFormState(formState => ({
-        ...formState, errors: "successfully changed"})
+        ...formState, errors: "Failed to change"})
       )
-    })
-  
-  }
-  const handleChange = event => {
-    event.persist();
+  })
 
-    setFormState(formState => ({
-      ...formState,
+}
+const handleChange = event => {
+  event.persist();
+
+  setFormState(formState => ({
+  ...formState,
       values: {
         ...formState.values,
         [event.target.name]:
@@ -99,10 +98,10 @@ const Security = props => {
   };
   const hasError = field =>
   formState.touched[field] && formState.errors[field] ? true : false;
-  
-return (
+
+  return (
       <div className={clsx(classes.root, className)} {...rest}>
-     <form name="change-password-form" method="post" onSubmit={handleSubmit}></form>  
+     <form name="password-reset-form" method="post" onSubmit={handleSubmit}></form>  
      <Grid container spacing={isMd ? 4 : 2}>
         <Grid item xs={12}>
           <div className={classes.titleCta}>
@@ -123,7 +122,7 @@ return (
             color="textPrimary"
             className={classes.inputTitle}
           >
-           <Grid item xs={12} data-aos="fade-up">
+            <Grid item xs={12} data-aos="fade-up">
             <Typography
               variant="subtitle1"
               color="textPrimary"
@@ -141,11 +140,11 @@ return (
               helperText={hasError('email') ? formState.errors.email[0] : null}
               error={hasError('email')}
               onChange={handleChange}
-              type="email"
+              type="text"
               value={formState.values.email || ''}
             />
         </Grid> 
-            Current password
+        Current password
           </Typography>
           <TextField
             placeholder="Current Password"
@@ -154,37 +153,37 @@ return (
             size="medium"
             name="currentPassword"
             fullWidth
-              helperText={hasError('currentPassword') ? formState.errors.currentPassword[0] : null}
+             helperText={hasError('currentPassword') ? formState.errors.currentPassword[0] : null}
               error={hasError('currentpassword')}
               onChange={handleChange}
               type="password"
               value={formState.values.currentPassword || ''}        
           />
         </Grid>
-        
+
         <Grid item xs={12}>
           <Typography
             variant="subtitle1"
             color="textPrimary"
             className={classes.inputTitle}
           >
-            New password
+          New password
           </Typography>
           <TextField
-            placeholder="New Password"
-            label="New password *"
-            variant="outlined"
-            size="medium"
-            name="newPassword"
-  
-            fullWidth
-              helperText={hasError('newPassword') ? formState.errors.newPassword[0] : null}
+           placeholder="New Password"
+           label="New password *"
+           variant="outlined"
+           size="medium"
+           name="newPassword"
+
+           fullWidth
+           helperText={hasError('newPassword') ? formState.errors.newPassword[0] : null}
               error={hasError('newPassword')}
               onChange={handleChange}
               type="password"
               value={formState.values.newPassword || ''}       
           />
-         </Grid>
+           </Grid>
         <Grid item xs={12}>
           <Typography
             variant="subtitle1"
@@ -206,16 +205,9 @@ return (
               type="password"
               value={formState.values.repeatPassword || ''} 
           />
-        </Grid>  
-        <Grid item xs={12}>
-            <i>
-              <Typography variant="subtitle2">
-                Fields that are marked with * change  are required.
-              </Typography>
-            </i>
-          </Grid>
-
-        <Grid item xs={12}>
+        </Grid>
+       
+          <Grid item xs={12}>
           <Divider />
         </Grid>
         <Grid item xs={12}>
@@ -231,19 +223,19 @@ return (
               </Typography>
             }
             labelPlacement="end"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <Divider />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Switch color="primary" />}
-            label={
-              <Typography
-                variant="subtitle1"
-                color="textPrimary"
-                className={classes.switchTitle}
+            />
+            </Grid>
+            <Grid item xs={12}>
+              <Divider />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControlLabel
+                control={<Switch color="primary" />}
+                label={
+                  <Typography
+                    variant="subtitle1"
+                    color="textPrimary"
+                    className={classes.switchTitle}
               >
                 Expose your email
               </Typography>
@@ -256,12 +248,11 @@ return (
                     variant="subtitle1"
 
                     align="center"
-                  >
-
-                    {"successfully changed"}
+                  >                 
+                  
                   </Typography>
                 </Grid>
-        
+
         <Grid item container justify="flex-start" xs={12}>
           <Button
             variant="contained"
@@ -269,34 +260,37 @@ return (
             color="primary"
             size="large"
             onClick={(e)=>handleSubmit(e)}       
-           >
-            save
+          >
+          save
+
           </Button>
           {<Typography
-                    variant="subtitle1"
+                    variant="subtitle2"
+
                     align="center"
-                  >
-                    {formState.errors === "Failed to change" ? formState.errors : ""}
+          >
+                    {formState.errors === "Successfully changed" ? formState.errors : ""}
                   </Typography>}
                   {<Typography
                     variant="subtitle1"
                     align="center"
-                  >
-                    {formState.errors=== null? "successfully changed" : ""}
-                  
-                  </Typography>}
-                   
-         </Grid>
-        </Grid> 
-        </div>
- );
-};
+          >
+                    {formState.errors=== null? "Faild to change" : ""}
 
+                  </Typography>}
+
+         </Grid>
+        </Grid>
+        </div>
+  );
+};        
+ 
 Security.propTypes = {
   /**
    * External classes
    */
   className: PropTypes.string,
 };
+   
 
 export default Security;
